@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Vacancies</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Search Vacancies</h1>
+    <nav>
+        <a href="/">Search</a> | <a href="/database">View Database</a>
+    </nav>
+    <form id="search-form">
+        <input type="text" name="query" placeholder="Поисковой запрос" required>
+        <input type="text" name="area" placeholder="Код региона" required>
+        <input type="number" name="per_page" placeholder="Вакансий на странице" required>
+        <input type="number" name="pages" placeholder="Количество страниц" required>
+        <input type="text" name="filename" placeholder="Название файла JSON" required>
+        <button type="submit">Search</button>
+    </form>
+    <div id="results"></div>
+    <script src="{{ url_for('static', filename='js/search.js') }}"></script>
+</body>
+</html>

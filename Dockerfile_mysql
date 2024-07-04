@@ -1,0 +1,17 @@
+# Используем базовый образ MySQL
+FROM mysql:latest
+
+# Определяем переменные окружения для MySQL
+ENV MYSQL_ROOT_PASSWORD=Pass1234
+ENV MYSQL_DATABASE=hh_ru
+ENV MYSQL_USER=ddientee
+ENV MYSQL_PASSWORD=pass
+
+# Копируем SQL скрипт для инициализации базы данных
+COPY ./db_config.sql /docker-entrypoint-initdb.d/db_config.sql
+
+# Устанавливаем права на скрипт
+RUN chmod 755 /docker-entrypoint-initdb.d/db_config.sql
+
+# Открываем порт MySQL
+EXPOSE 3306

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Database of Vacancies</h1>
+    <nav>
+        <a href="/">Search</a> | <a href="/database">View Database</a>
+    </nav>
+    <form id="filter-form">
+        <input type="text" name="name" placeholder="Название">
+        <input type="text" name="employer" placeholder="Работодатель">
+        <input type="text" name="salary" placeholder="Зарплата">
+        <button type="submit">Apply Filters</button>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>URL</th>
+                <th>Salary</th>
+                <th>Employer</th>
+                <th>Requirement</th>
+            </tr>
+        </thead>
+        <tbody id="vacancy-list">
+            {% for vacancy in vacancies %}
+            <tr>
+                <td>{{ vacancy.id }}</td>
+                <td>{{ vacancy.name }}</td>
+                <td><a href="{{ vacancy.alternate_url }}" target="_blank">{{ vacancy.alternate_url }}</a></td>
+                <td>{{ vacancy.salary }}</td>
+                <td>{{ vacancy.employer }}</td>
+                <td>{{ vacancy.requirement }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <script src="{{ url_for('static', filename='js/filter.js') }}"></script>
+</body>
+</html>
